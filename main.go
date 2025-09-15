@@ -7,6 +7,6 @@ import (
 
 func main() {
 	http.Handle("/", http.FileServer(http.Dir("./static")))
-	log.Println("server served on :3000")
-	http.ListenAndServe(":3000", nil)
+	log.Println("server served on :80")
+	http.ListenAndServe(":80", nil)
 }

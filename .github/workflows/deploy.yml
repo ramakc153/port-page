@@ -9,15 +9,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to server
-    uses: appleboy/ssh-action@v1.0.0
-    with:
-      host: ${{secrets.SERVER_HOST}}
-      username: ${{secrets.USERNAME}}
-      key: ${{secrets.SSH_PRIVATE_KEY}}
-      script: |
-        cd /root/port_page
-        git pull
-        go build .
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{secrets.SERVER_HOST}}
+          username: ${{secrets.USERNAME}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          script: |
+            cd /root/port_page
+            git pull
+            go build .
 
-        ./port-page
+            ./port-page

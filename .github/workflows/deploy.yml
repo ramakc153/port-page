@@ -19,5 +19,5 @@ jobs:
             cd /root/port-page
             git pull origin main
             go build .
-
-            ./port-page
+            nohup ./port-page &
+            exit 0

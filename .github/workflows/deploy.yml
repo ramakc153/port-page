@@ -16,9 +16,10 @@ jobs:
           username: ${{secrets.USERNAME}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
           script: |
+            APP_PATH=/home/${{secrets.USERNAME}}/port-page/port-page
             GO_PATH=/usr/local/go/bin/go
             cd /home/${{secrets.USERNAME}}/port-page
             git pull origin main
             ${GO_PATH} build .
-            sudo nohup ./port-page &
+            sudo nohup ${APP_PATH} &
             exit 0

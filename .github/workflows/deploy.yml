@@ -21,4 +21,4 @@ jobs:
             cd /home/${{secrets.USERNAME}}/port-page
             git pull origin main
             ${GO_PATH} build .
-            systemctl --user start port-page.service
+            sudo systemctl start port-page.service

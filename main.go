@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
+	port := ":3000"
 	http.Handle("/", http.FileServer(http.Dir("./static")))
-	log.Println("server served on :80")
-	log.Println(http.ListenAndServe(":80", nil))
+	log.Println("server served on ", port)
+	log.Println(http.ListenAndServe(port, nil))
 }

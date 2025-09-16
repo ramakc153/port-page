@@ -21,5 +21,4 @@ jobs:
             cd /home/${{secrets.USERNAME}}/port-page
             git pull origin main
             ${GO_PATH} build .
-            sudo nohup ${APP_PATH} &
-            exit 0
+            systemctl --user start port-page.service

@@ -16,8 +16,8 @@ jobs:
           username: ${{secrets.USERNAME}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
           script: |
-            cd /root/port-page
+            cd /home/${{secrets.USERNAME}}/port-page
             git pull origin main
             go build .
-            nohup ./port-page &
+            sudo nohup ./port-page &
             exit 0

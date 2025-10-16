@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net"
 	"net/http"
 )
 
@@ -32,6 +33,19 @@ func getLocation(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	queryParams := r.URL.Query()
 	ip := queryParams.Get("clientIp")
+	fmt.Println()
+	if ip == "" || net.ParseIP(ip) == nil {
+
+		response := map[string]string{
+			"message": "invalid IP",
+			"lat":     "",
+			"lon":     "",
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(response)
+		return
+	}
 	urlBuilder := fmt.Sprintf("http://ip-api.com/json/%s", ip)
 	resp, err := http.Get(urlBuilder)
 	if err != nil {
@@ -42,7 +56,7 @@ func getLocation(w http.ResponseWriter, r *http.Request) {
 			"lon":     "",
 		}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusForbidden)
+		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(response)
 		return
 	}

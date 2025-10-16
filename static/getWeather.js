@@ -16,7 +16,7 @@ async function getClientIP(){
 async function getLocation() {
     const clientIp = await getClientIP()
     try{
-        const response = await fetch(`http://ip-api.com/json/${clientIp}`)
+        const response = await fetch(`https://ip-api.com/json/${clientIp}`)
         if (!response.ok){
             throw new Error(`HTTP Error status: ${response.status}`)
         }

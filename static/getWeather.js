@@ -1,3 +1,5 @@
+const API_BASE_URL = window.location.origin;
+
 async function getClientIP(){
     try{
         const response = await fetch('https://api.ipify.org?format=json')
@@ -16,7 +18,7 @@ async function getClientIP(){
 async function getLocation() {
     const clientIp = await getClientIP()
     try{
-        const response = await fetch(`http://localhost:3000/location?clientIp=${clientIp}`)
+        const response = await fetch(`${API_BASE_URL}/location?clientIp=${clientIp}`)
         if (!response.ok){
             throw new Error(`HTTP Error status: ${response.status}`)
         }
